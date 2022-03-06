@@ -1,5 +1,5 @@
 # Google Cloud CI/CD End-to-End Demo
-This repo demostrates Kubernetes CI/CD with Google Cloud devops tools Google Cloud Deploy, Cloud Build, and Artifact Registry. The example app is based on a simple Python Flask example app named "Population Stats" and uses Kustomize overlays for manifest generation. 
+This repo demonstrates Kubernetes CI/CD with Google Cloud devops tools Google Cloud Deploy, Cloud Build, and Artifact Registry. The example app is based on a simple Python Flask example app named "Population Stats" and uses Kustomize overlays for manifest generation. 
 
 ![Google Cloud E2E DevOps Architecture Diagram (1)](https://user-images.githubusercontent.com/76225123/145627874-86971a34-768b-4fc0-9e96-d7a769961321.png)
 
@@ -46,7 +46,7 @@ You must give Cloud Build explicit permission to trigger a Cloud Deploy release.
 The demo is very simple at this stage.
 1. User commits a change the main branch of the repo
 2. Cloud Build is automatically triggered, which:
-  * builds and pushes impages to Artifact Registry
+  * builds and pushes images to Artifact Registry
   * creates a Cloud Deploy release in the pipeline
 3. User then navigates to Cloud Deploy UI and shows promotion events:
   * test cluster to staging clusters
