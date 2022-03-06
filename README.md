@@ -77,7 +77,7 @@ To test the staging overlays/profile:
 ## Try it in Cloud Shell
 Google Cloud Shell provides a free environment in which to play with these files:
 
-[![Open in cloud shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/vszal/pop-kustomize&page=editor&open_in_editor=skaffold.yaml)
+[![Open in cloud shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/StuartCTS/pop-kustomize&page=editor&open_in_editor=skaffold.yaml)
 
 # About the Sample app - Population stats
 
