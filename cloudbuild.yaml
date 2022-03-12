@@ -8,7 +8,7 @@ steps:
     # available in the repository.
     name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: '/bin/sh'
-    args: ['-c', 'mkdir hydrated-manifests && kubectl kustomize config/prod > hydrated-manifests/prod.yaml']
+    args: ['-c', 'mkdir hydrated-manifests && kubectl kustomize overlays/prod > hydrated-manifests/prod.yaml']
   - id: 'Download policies'
     # This step fetches the policies from the Anthos Config Management repository
     # and consolidates every resource in a single file.
