@@ -2,7 +2,7 @@
 # NOTE: currently requires SCM triggering due to dependency on the COMMIT_SHA variable
 steps:
    # TODO add policy validation steps
-  - id: 'Prepare config'
+  - id: 'Prepare prod deployment configuration'
     # This step builds the final manifests for the app
     # using kustomize and the configuration files
     # available in the repository.
@@ -17,23 +17,27 @@ steps:
     args: ['-c', 'kpt pkg get https://github.com/StuartCTS/anthos-config-management-samples.git/ci-app/acm-repo/cluster constraints
                   && kpt fn source constraints/ hydrated-manifests/ > hydrated-manifests/kpt-manifests.yaml']
   - id: 'Validate against policies'
-    # This step validates that all resources comply with all policies.
+    # This step validates that all k8s resources comply with all policies.
     name: 'gcr.io/config-management-release/policy-controller-validate'
     args: ['--input', 'hydrated-manifests/kpt-manifests.yaml']
   # Build and tag using commit sha
-  - name: 'gcr.io/cloud-builders/docker'
+  - id: 'Build app container'
+    name: 'gcr.io/cloud-builders/docker'
     args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
     dir: 'app'
   # Run unit tests
-  - name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}'
+  - id: 'Run unit tests'
+    name: 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}'
     entrypoint: python
     args: ["unit_tests.py"]
     dir: 'app'
   # Push the container image to Artifact Registry
+  - id: 'Push to registry'
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/pop-stats/pop-stats:${COMMIT_SHA}']
   # Create release in Google Cloud Deploy
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  - id: 'Create Cloud Deploy release to test cluster'
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
     entrypoint: gcloud
     args: 
       [
