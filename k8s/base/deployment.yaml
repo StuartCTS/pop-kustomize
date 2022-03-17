@@ -9,6 +9,9 @@ spec:
     matchLabels:
       app: pop-stats
   replicas: 1
+  securityContext:
+    # runAsNonRoot: true
+    allowPrivilegeEscalation: true
   template:
     metadata:
       labels:
@@ -21,7 +24,7 @@ spec:
         - containerPort: 8080
           protocol: TCP
         securityContext:
-          runAsNonRoot: true
+          # runAsNonRoot: true
           allowPrivilegeEscalation: true
         env:
           - name: SITE_NAME
