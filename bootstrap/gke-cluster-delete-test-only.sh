@@ -1,4 +1,4 @@
-# Cleanup script to delete the three clusters created by the gke-cluster-init.sh script
+# Cleanup script to delete the test cluster created by the gke-cluster-init.sh script
 # ACTION REQUIRED! Change "project-id-here" value to the project you'll be using
 export PROJECT_ID="cc-new-330417"
 # sets the current project for gcloud
