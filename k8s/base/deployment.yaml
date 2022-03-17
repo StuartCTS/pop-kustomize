@@ -17,6 +17,8 @@ spec:
       containers:
       - name: pop-stats
         image: pop-stats
+        securityContext:
+          allowPrivilegeEscalation: false
         ports:
         - containerPort: 8080
           protocol: TCP
