@@ -19,6 +19,8 @@ spec:
                 port: 8080
               initialDelaySeconds: 30
               periodSeconds: 6
+              securityContext:
+                allowPrivilegeEscalation: true
             env:
               - name: SITE_NAME
                 value: "Population Stats Prod"
