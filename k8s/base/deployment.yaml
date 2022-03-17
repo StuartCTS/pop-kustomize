@@ -17,11 +17,12 @@ spec:
       containers:
       - name: pop-stats
         image: pop-stats
-        # securityContext:
-        #   allowPrivilegeEscalation: true
         ports:
         - containerPort: 8080
           protocol: TCP
+        securityContext:
+          runAsNonRoot: true
+          allowPrivilegeEscalation: true
         env:
           - name: SITE_NAME
             value: "Site Name"
